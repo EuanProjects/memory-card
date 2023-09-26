@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import MusicPlayer from './components/musicPlayer';
+import Game from './components/game';
 
 function App() {
+  const [playMusic, setPlayMusic] = useState(true);
+  const [playSound, setPlaySound] = useState(false);
   // AllCharacters [{name, fullportrait, displayIcon}]
   // characterForCards [{name, fullportrait, displayIcon}]
   // levels [[0,1,2]] etc
@@ -21,15 +23,19 @@ function App() {
 
   // generateRandomLevel
 
+
+
   return (
     <>
-
+    <div>hello</div>
+    <MusicPlayer />
+    <Game />
     {/*
       !difficulty &&
       home
 
       difficulty &&
-      game
+      game {sound}
   */}
     </>
   )
