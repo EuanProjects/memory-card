@@ -24,10 +24,10 @@ function Modal({ wonOrLoss, handleRestart }) {
 
     return (
         <>
-            <div className="w-[100vw] h-[100vh] absolute bg-black opacity-50 z-10">
+            <div className="w-[100vw] h-[100vh] fixed bg-black opacity-50 z-10">
             </div>
             <div className="grid place-items-center absolute w-[100vw] h-[100vh]">
-                <div className=" w-[400px] h-[200px] bg-valorantred rounded-lg border-8 border-valorantblack text-white z-40 grid place-content-center">
+                <div className="xs:w-[300px] xs:h-[190px] sm:w-[400px] sm:h-[200px] bg-valorantred rounded-lg border-8 border-valorantblack text-white z-40 grid place-content-center">
                     <div className="h-[100px] w-[175px]" style={{ backgroundImage: `url(${modalGif})`, backgroundSize: 'contain', backgroundSize: 'contain', backgroundRepeat: 'no-repeat' }}>
                     </div>
                     <div ><h2 className="font-valorant text-2xl text-center">{wonOrLoss ? "won" : "lost"}</h2></div>

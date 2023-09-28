@@ -11,17 +11,13 @@ function MusicPlayer({ playMusic, setPlayMusic, playSound, setPlaySound }) {
     }
     return (
         <>
-            <div className="flex w-full h-[15px] absolute inset-x-0 bottom-4 p-10">
-                <div>
-                    <button className="bg-slate-200 mx-5 w-12 h-12 rounded-full bg-valorantred  border-2 border-valorantblack" onClick={handleMusicToggle}>
-                        {
-                            playMusic ? <Volume2 className="m-auto"/> : <VolumeX className="m-auto"/>
-                        }
+            <div className="fixed inset-x-0 bottom-4 sm:p-10 xs:p-3">
+                <div className="flex flex-col sm:flex-row items-start">
+                    <button className="bg-slate-200 mx-5 w-12 h-12 rounded-full bg-valorantred border-2 border-valorantblack" onClick={handleMusicToggle}>
+                        {playMusic ? <Volume2 className="m-auto" /> : <VolumeX className="m-auto" />}
                     </button>
                     <button className="bg-slate-200 mx-5 w-12 h-12 rounded-full bg-valorantred border-2 border-valorantblack" onClick={handleSoundToggle}>
-                        {
-                            playSound ? <Bell className="m-auto" /> : <BellOff className="m-auto" />
-                        }
+                        {playSound ? <Bell className="m-auto" /> : <BellOff className="m-auto" />}
                     </button>
                 </div>
                 <ReactHowler
@@ -32,6 +28,8 @@ function MusicPlayer({ playMusic, setPlayMusic, playSound, setPlaySound }) {
                     loop={true}
                 />
             </div>
+
+
         </>
     );
 }

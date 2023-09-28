@@ -9,7 +9,7 @@ import hardDifficulty from "./data/hardDifficulty";
 import mediumDifficulty from "./data/mediumDifficulty";
 
 function App() {
-  const [playMusic, setPlayMusic] = useState(false);
+  const [playMusic, setPlayMusic] = useState(true);
   const [playSound, setPlaySound] = useState(true);
   const [startGame, setStartGame] = useState(false);
   const [difficulty, setDifficulty] = useState(null);
@@ -62,16 +62,12 @@ function App() {
     }
   }
 
-  // generateRandomLevel
-
-
 
   return (
     <>
-      {/* <div className="h-[100vh] w-[100vw]" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'contain', backgroundSize: 'contain' }}> */}
       {
       !difficulty &&
-      <video autoPlay muted loop id="myVideo" className='w-[100vw] h-[100vh] object-cover absolute -z-10'>
+      <video autoPlay muted loop id="myVideo" className='h-screen w-screen object-cover fixed -z-10'>
         <source src="src/assets/valorant-background-loop.mp4" type="video/mp4" loading="lazy"/>
       </video>
      }
@@ -91,12 +87,11 @@ function App() {
         startGame &&
         difficulty &&
         <>
-          <Game playSound={playSound} gameCharacters={gameCharacters} difficulty={difficulty} />
+          <Game playSound={playSound} gameCharacters={gameCharacters} difficulty={difficulty} setDifficulty={setDifficulty} />
         </>
       }
 
       <MusicPlayer playMusic={playMusic} setPlayMusic={setPlayMusic} playSound={playSound} setPlaySound={setPlaySound} />
-      {/* </div> */}
     </>
   )
 }
