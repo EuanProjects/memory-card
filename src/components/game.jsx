@@ -1,14 +1,28 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Card from "./card"
 import { Howl } from "howler";
+import Modal from "./modal";
 
 function Game({ playSound, gameCharacters, difficulty }) {
     const [currentScore, setCurrentScore] = useState(0);
     const [bestScore, setBestScore] = useState(0);
     const [moves, setMoves] = useState(new Set());
     const [isGameOver, setIsGameOver] = useState(false);
+    const [playGameVideo, setPlayGameVideo] = useState(false);
     const wonOrLoss = moves.size + 1 === difficulty.guesses;
-    const currentLevel = currentScore === difficulty.guesses ? currentScore - 1 : currentScore; 
+    const currentLevel = currentScore === difficulty.guesses ? currentScore - 1 : currentScore;
+
+
+    useEffect(() => {
+        const delay = 5000;
+        const timer = setTimeout(() => {
+            setPlayGameVideo(true);
+        }, delay);
+
+        return () => {
+            clearTimeout(timer);
+        };
+    });
 
     const kill = new Howl({
         src: [`/src/assets/valorant-kill-${(currentScore) % 5 + 1}.mp3`],
@@ -56,46 +70,50 @@ function Game({ playSound, gameCharacters, difficulty }) {
         }
     }
 
+
+
     return (
         <>
-
+            {
+                !playGameVideo &&
+                <video autoPlay muted loop id="myVideo" className='w-[100vw] h-[100vh] object-cover absolute -z-10'>
+                    <source src="src/assets/loading-valorant.mp4" type="video/mp4" loading="lazy" />
+                </video>
+            }
+            {
+                playGameVideo &&
+                <video autoPlay muted loop id="myVideo" className='w-[100vw] h-[100vh] object-cover absolute -z-10'>
+                    <source src="src/assets/game.mp4" type="video/mp4" loading="lazy" />
+                </video>
+            }
             {
                 isGameOver &&
-                <>
-                    <div className="grid place-items-center z-10 w-[100vw] h-[100vh] absolute bg-black opacity-50 ">
-                        <div className="z-20 w-[100px] h-[100px] bg-valorantred text-white opacity-100">
-                            <div>{wonOrLoss ? "won" : "lost"}</div>
-                            <button onClick={() => handleRestart()}>Restart</button>
-                        </div>
-
-                    </div>
-                </>
+                <Modal wonOrLoss={wonOrLoss} handleRestart={handleRestart}/>
             }
-            <header className="flex align-top flex-wrap justify-between px-4 flex-wrap w-full h-[200px]">
-                <button className="h-10"><a href="/">Home</a></button>
-                <div>
-                    <p>Score: {currentScore}</p>
-                    <p>Best Score: {bestScore}</p>
-                </div>
-            </header>
-
             {
+                playGameVideo &&
                 gameCharacters &&
                 <>
-                    <div className="flex flex-wrap w-[80%] justify-evenly mx-auto">
-                        {difficulty.levels[currentLevel].map((characterIndex) => (
-                            <Card
-                                key={gameCharacters[characterIndex].displayName}
-                                name={gameCharacters[characterIndex].displayName}
-                                fullPortrait={gameCharacters[characterIndex].fullPortrait}
-                                handleMove={handleMove}
-                                isGameOver={isGameOver}
-                            />
-                        ))}
-                    </div>
+                        <header className="flex align-top flex-wrap justify-between px-4 py-10 w-full h-[10%]">
+                            <button className="bg-valorantblack rounded-full transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"><a href="/"><img src="/valorant_logo.png" alt="My Image" className=" w-40 h-40" /></a></button>
+                            <div className="font-valorant bg-valorantred h-[75px] px-4 rounded-lg flex flex-col justify-center border-4 border-valorantblack">
+                                <p>Score: {currentScore}</p>
+                                <p>Best Score: {bestScore}</p>
+                            </div>
+                        </header>
+                        <div className="flex flex-wrap w-[80%] h-[70vh] gap-5 justify-center items-center mx-auto">
+                            {difficulty.levels[currentLevel].map((characterIndex) => (
+                                <Card
+                                    key={gameCharacters[characterIndex].displayName}
+                                    name={gameCharacters[characterIndex].displayName}
+                                    fullPortrait={gameCharacters[characterIndex].fullPortrait}
+                                    handleMove={handleMove}
+                                    isGameOver={isGameOver}
+                                />
+                            ))}
+                        </div>
                 </>
             }
-
         </>
     )
 }

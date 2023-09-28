@@ -39,7 +39,7 @@ function App() {
 
   useEffect(() => {
     function generateGameCharacters(guesses) {
-      const shuffledArray = [...characterInfo]; 
+      const shuffledArray = [...characterInfo];
       for (let i = shuffledArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
@@ -62,32 +62,22 @@ function App() {
     }
   }
 
-
-
-  // AllCharacters [{name, fullportrait, displayIcon}]
-  // characterForCards [{name, fullportrait, displayIcon}]
-  // levels [[0,1,2]] etc
-  // difficulty null
-  // sounds = true
-  // music = true
-
-  // handleDifficultyChoice
-
-  // useEffect to get characters
-
-  // handleSoundToggle
-
-  // handleMusicToggle
-
   // generateRandomLevel
 
 
 
   return (
     <>
+      {/* <div className="h-[100vh] w-[100vw]" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'contain', backgroundSize: 'contain' }}> */}
+      {
+      !difficulty &&
+      <video autoPlay muted loop id="myVideo" className='w-[100vw] h-[100vh] object-cover absolute -z-10'>
+        <source src="src/assets/valorant-background-loop.mp4" type="video/mp4" loading="lazy"/>
+      </video>
+     }
 
       {!startGame &&
-        <Start setStartGame={setStartGame} />
+        <Start className="z-30" setStartGame={setStartGame} />
       }
 
 
@@ -106,7 +96,7 @@ function App() {
       }
 
       <MusicPlayer playMusic={playMusic} setPlayMusic={setPlayMusic} playSound={playSound} setPlaySound={setPlaySound} />
-
+      {/* </div> */}
     </>
   )
 }

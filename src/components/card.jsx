@@ -1,9 +1,10 @@
 function Card({ name, fullPortrait, handleMove, isGameOver }) {
     return (
         <>
-            <div className="w-48 h-64 min-w-[190px] rounded-lg bg-valorantblack text-white font-mono">
+            <div className="animate-dropdownin w-48 h-64 min-w-[190px] rounded-lg bg-valorantblack text-white font-mono drop-shadow-lg
+            transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
                 <button className="w-full h-full p-3" onClick={() => handleMove(name)} disabled={isGameOver}>
-                    <div>{name}</div>
+                    <div className="font-valorant text-2xl"><h2>{name}</h2></div>
                     <div className="bg-valorantred rounded-lg">
                         <img
                             src={fullPortrait}
@@ -19,10 +20,3 @@ function Card({ name, fullPortrait, handleMove, isGameOver }) {
 }
 
 export default Card
-
-
-// onLoad={(e) => {
-//     e.target.style.objectFit = 'cover';
-//     e.target.style.height = '10rem';
-//     e.target.style.width = '12rem';
-// }}
