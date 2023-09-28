@@ -42,12 +42,12 @@ function Game({ playSound, gameCharacters, difficulty, setDifficulty }) {
     });
 
     const kill = new Howl({
-        src: [`/src/assets/valorant-kill-${(currentScore) % 5 + 1}.mp3`],
+        src: [`/valorant-kill-${(currentScore) % 5 + 1}.mp3`],
         volume: 0.1
     });
 
     const death = new Howl({
-        src: ['/src/assets/brim-death.mp3'],
+        src: ['/brim-death.mp3'],
         volume: 0.1
     })
 
@@ -91,13 +91,13 @@ function Game({ playSound, gameCharacters, difficulty, setDifficulty }) {
             {
                 !playGameVideo &&
                 <video autoPlay muted loop id="myVideo" className='h-screen w-screen object-cover fixed -z-10'>
-                    <source src="src/assets/loading-valorant.mp4" type="video/mp4" loading="lazy" />
+                    <source src="loading-valorant.mp4" type="video/mp4" loading="lazy" />
                 </video>
             }
             {
                 playGameVideo &&
                 <video autoPlay muted loop id="myVideo" className='h-screen w-screen fixed object-cover -z-10'>
-                    <source src="src/assets/game.mp4" type="video/mp4" loading="lazy" />
+                    <source src="/game.mp4" type="video/mp4" loading="lazy" />
                 </video>
             }
             {

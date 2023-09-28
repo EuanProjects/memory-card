@@ -21,7 +21,7 @@ function MusicPlayer({ playMusic, setPlayMusic, playSound, setPlaySound }) {
                     </button>
                 </div>
                 <ReactHowler
-                    src='/src/assets/Zedd.mp3'
+                    src='/Zedd.mp3'
                     preload={true}
                     playing={playMusic}
                     volume={0.025}
