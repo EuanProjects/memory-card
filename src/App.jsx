@@ -68,7 +68,7 @@ function App() {
       {
       !difficulty &&
       <video autoPlay muted loop id="myVideo" className='h-screen w-screen object-cover fixed -z-10'>
-        <source src="src/assets/valorant-background-loop.mp4" type="video/mp4" loading="lazy"/>
+        <source src="/valorant-background-loop.mp4" type="video/mp4" loading="lazy"/>
       </video>
      }
 
